@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "io.shubham0204.smollmandroid.fork"
+    namespace = "io.shubham0204.smollmandroid"
     compileSdk = 35
     ndkVersion = "27.2.12479018"
 
