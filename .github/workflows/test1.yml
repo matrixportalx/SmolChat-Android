@@ -1,4 +1,4 @@
-name: Test Android APK
+name: 1Build and Release Android APK
 
 on:
   push:
@@ -26,24 +26,17 @@ jobs:
         with:
           ndk-version: r27c
           add-to-path: true
-          
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build APK
+      - name: Build Debug APK
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
-          
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-          body_path: CHANGELOG.md
-          files: app/build/outputs/apk/release/app-release.apk
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          name: debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
