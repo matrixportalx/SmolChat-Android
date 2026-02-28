@@ -1,4 +1,4 @@
-name:: İmzalı Android APK
+name:: imzalı Android APK
 
 on:
   workflow_dispatch:
